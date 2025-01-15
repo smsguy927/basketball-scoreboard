@@ -15,13 +15,13 @@ body {
     line-height: 36px;
     text-align: center;
 }
-.score-container, .fouls-container, .timer-container{
+.score-container, .fouls-container, .timer-container, .period-container, .poss-bonus-container{
     display: flex;
-    flex-direction: column;
+
     align-items: center;
     justify-content: center;
     background-color: #080001;
-    height: 200px;
+    height: 130px;
     width: 200px;
     border-radius: 5px;
     font-family: "Cursed Timer ULiL",Courier, monospace;
@@ -31,7 +31,11 @@ body {
     text-align: center;
     color: #F94F6D;
 }
-.add-pts-btns button, .toggles button, .foul-btns button{
+.poss-bonus-container{
+    height: 50px;
+    font-size: 35px;
+}
+button {
     background-color: #1B244A;
     border: 2px solid #9AABD8;
     border-radius: 5px;
@@ -49,13 +53,55 @@ body {
 }
 .fouls-container{
     height: 100px;
+    color: #f39d0c;
 }
-.timer-container{
-    margin: 5px;
-    background-color: #080001;
-    color: #F94F6D;
-
-    font-size: 50px;
-
+.timer-container, .period-container{
+    margin: 5px 0 -35px 0;
+    font-size: 70px;
+    width: 90%;
+    color: #10b881;
+}
+.period-container{
+    margin:  0 0 5px 0;
     width: 90%
+}
+
+.confirm {
+    color: #F94F6D;
+    background-color: #44151a;
+    border: 2px solid #F94F6D;
+}
+.slow {
+    color: #f39d0c;
+    background-color: #773510;
+    border: 2px solid #f39d0c;
+}
+
+#new-game-form {
+    margin-top: 5px;
+    color: #EEEEEE;
+    font-family: Verdana, Courier, monospace;
+}
+#new-game-button {
+    color: #a6f1cf;
+    background-color: #064d3c;
+    border: 2px solid #a6f1cf;
+}
+#time-period-separator{
+    border: 2px solid #9AABD8;
+    border-radius: 5px;
+    width: 30%;
+    margin: 2px;
+}
+.hurry-up {
+    color: #f39d0c;
+    background-color: #773510;
+    border: 2px solid #f39d0c;
+}
+
+.countdown {
+    color: #bd1226;
+    background-color: #44151a;
+    border: 2px solid #F94F6D;
+
 }

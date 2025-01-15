@@ -10,8 +10,10 @@
     <div class="team-container" id="home-side">
         <h3 class="team-name">HOME </h3>
         <div class="home-score score-container">
-            <p class="home-score-count">123</p>
-            <span id="home-possession"></span><span id="home-bonus"></span>
+            <p id="home-score-count">123</p>
+        </div>
+        <div class="poss-bonus-container" id="home-poss-bonus-container">
+            <span id="home-possession">🏈</span><span id="home-bonus">🎉</span>
         </div>
         <div class="add-pts-btns">
             <button id="add-1-home">+1</button>
@@ -33,15 +35,18 @@
         </div>
         <h4 class="fouls-heading">FOULS</h4>
         <div class="home-fouls fouls-container">
-            <p class="home-fouls-count">78</p>
+            <p id="home-fouls-count">78</p>
         </div>
     </div>
     <div class="team-container" id="away-side">
 
         <h3 class="team-name">GUEST</h3>
         <div class="away-score score-container">
-            <p class="away-score-count">456</p>
-            <span id="away-possession"></span><span id="away-bonus"></span>
+            <p id="away-score-count">456</p>
+
+        </div>
+        <div class="poss-bonus-container" id="away-poss-bonus-container">
+            <span id="away-possession">🏈</span><span id="away-bonus">🎉</span>
         </div>
         <div class="add-pts-btns">
             <button id="add-1-away">+1</button>
@@ -63,26 +68,46 @@
         </div>
         <h4 class="fouls-heading">FOULS</h4>
         <div class="away-fouls fouls-container">
-            <p class="home-fouls-count">90</p>
+            <p id="away-fouls-count">90</p>
         </div>
     </div>
 
 </div>
 <div class="container">
     <div class="timer-container">
-        <div>12:34</div><hr><div>1</div>
+        <span id="time">12:34</span>
     </div>
 </div>
 <div class="container">
+    <div class="period-container">
+        <span class="period" id="period-count">5</span><span class="period">/</span><span class="period" id="period-total">6</span>
+    </div>
+</div>
+
+<div class="container">
     <div class="danger-zone">
-        <button id="start">START</button>
-        <button id="pause">PAUSE</button>
-        <button id="add-period">+PERIOD</button>
-        <button id="subtract-period">-PERIOD</button>
+
+        <button class="slow" id="pause">PAUSE</button>
+        <button class="slow" id="add-period">+PERIOD</button>
+        <button class="slow" id="subtract-period">-PERIOD</button>
         <button class="confirm" id="reset-timer">RESET TIMER</button>
         <button class="confirm" id="reset-scores">RESET SCORES</button>
         <button class="confirm" id="reset-game">RESET GAME</button>
     </div>
+
+</div>
+<div class="container">
+
+    <form id="new-game-form">
+        <button id="new-game-button" type="button">NEW GAME</button>
+        <label for="period-length" hidden> Period Length
+            <input type="time" id="period-length" step="1" min="10" required>
+        </label>
+        <label for="number-of-periods" hidden>Periods
+            <input type="number" id="number-of-periods" min="1" step="1" required>
+        </label>
+        <button type="submit" id="start-game" hidden>START</button>
+    </form>
 </div>
 <script src="index.js"></script>
 </body>
