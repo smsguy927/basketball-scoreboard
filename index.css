@@ -1,0 +1,61 @@
+body {
+    margin: 0;
+    background-color: #1B244A;
+}
+
+.container {
+    display: flex;
+    justify-content: space-around;
+}
+.team-name, .fouls-heading{
+    color: #EEEEEE;
+    font-family: Verdana, Courier, monospace;
+    font-weight: 700;
+    font-size: 40px;
+    line-height: 36px;
+    text-align: center;
+}
+.score-container, .fouls-container, .timer-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #080001;
+    height: 200px;
+    width: 200px;
+    border-radius: 5px;
+    font-family: Courier, monospace;
+    font-weight: 700;
+    font-size: 70px;
+    line-height: 36px;
+    text-align: center;
+    color: #F94F6D;
+}
+.add-pts-btns button, .toggles button, .foul-btns button{
+    background-color: #1B244A;
+    border: 2px solid #9AABD8;
+    border-radius: 5px;
+    color: #9AABD8;
+    font-family: Verdana, Courier, monospace;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 36px;
+    text-align: center;
+    margin: 2px;
+}
+.fouls-heading{
+    font-size: 30px;
+    margin: 10px;
+}
+.fouls-container{
+    height: 100px;
+}
+.timer-container{
+    margin: 5px;
+    background-color: #080001;
+    color: #F94F6D;
+
+    font-size: 50px;
+
+    width: 90%
+}

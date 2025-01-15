@@ -1,0 +1,89 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="index.css">
+    <title>Basketball Scoreboard</title>
+</head>
+<body>
+<div class="container">
+    <div class="team-container" id="home-side">
+        <h3 class="team-name">HOME </h3>
+        <div class="home-score score-container">
+            <p class="home-score-count">123</p>
+            <span id="home-possession"></span><span id="home-bonus"></span>
+        </div>
+        <div class="add-pts-btns">
+            <button id="add-1-home">+1</button>
+            <button id="add-2-home">+2</button>
+            <button id="add-3-home">+3</button>
+            <button id="add-n-home">+n</button>
+            <label for="add-n-home-input" hidden>
+                <input type="number" id="add-n-home-input">
+            </label>
+        </div>
+        <div class="toggles">
+            <button id="possession-button-home">possession</button>
+            <button id="bonus-button-home">bonus</button>
+        </div>
+        <div class="foul-btns">
+            <button id="add-foul-home">+foul</button>
+            <button id="subtract-foul-home">-foul</button>
+            <button id="clear-fouls-home">clear</button>
+        </div>
+        <h4 class="fouls-heading">FOULS</h4>
+        <div class="home-fouls fouls-container">
+            <p class="home-fouls-count">78</p>
+        </div>
+    </div>
+    <div class="team-container" id="away-side">
+
+        <h3 class="team-name">GUEST</h3>
+        <div class="away-score score-container">
+            <p class="away-score-count">456</p>
+            <span id="away-possession"></span><span id="away-bonus"></span>
+        </div>
+        <div class="add-pts-btns">
+            <button id="add-1-away">+1</button>
+            <button id="add-2-away">+2</button>
+            <button id="add-3-away">+3</button>
+            <button id="add-n-away">+n</button>
+            <label for="add-n-away-input" hidden>
+                <input type="number" id="add-n-away-input">
+            </label>
+        </div>
+        <div class="toggles">
+            <button id="possession-button-away">possession</button>
+            <button id="bonus-button-away">bonus</button>
+        </div>
+        <div class="foul-btns">
+            <button id="add-foul-away">+foul</button>
+            <button id="subtract-foul-away">-foul</button>
+            <button id="clear-fouls-away">clear</button>
+        </div>
+        <h4 class="fouls-heading">FOULS</h4>
+        <div class="away-fouls fouls-container">
+            <p class="home-fouls-count">90</p>
+        </div>
+    </div>
+
+</div>
+<div class="container">
+    <div class="timer-container">
+        <div>12:34</div><hr><div>1</div>
+    </div>
+</div>
+<div class="container">
+    <div class="danger-zone">
+        <button id="start">START</button>
+        <button id="pause">PAUSE</button>
+        <button id="add-period">+PERIOD</button>
+        <button id="subtract-period">-PERIOD</button>
+        <button class="confirm" id="reset-timer">RESET TIMER</button>
+        <button class="confirm" id="reset-scores">RESET SCORES</button>
+        <button class="confirm" id="reset-game">RESET GAME</button>
+    </div>
+</div>
+<script src="index.js"></script>
+</body>
+</html>
