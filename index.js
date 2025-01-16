@@ -50,6 +50,32 @@ const timerSpan = document.getElementById("timer-span")
 const periodCount = document.getElementById("period-count")
 const periodSep = document.getElementById("period-sep")
 const totalPeriods = document.getElementById("period-total")
+const pauseTimer = document.getElementById("pause-timer")
+const addPeriod = document.getElementById("add-period")
+const subtractPeriod = document.getElementById("subtract-period")
+// TODO: Add Pause and Reset Timer Functionality
+const resetTimerBtn = document.getElementById("reset-timer")
+const resetScoresBtn = document.getElementById("reset-scores")
+const resetGameBtn = document.getElementById("reset-game")
+
+const add1homeBtn = document.getElementById("add-1-home")
+const add2homeBtn = document.getElementById("add-2-home")
+const add3homeBtn = document.getElementById("add-3-home")
+const addNHomeBtn = document.getElementById("add-n-home")
+const possHomeBtn = document.getElementById("poss-button-home")
+const bonusHomeBtn = document.getElementById("bonus-button-home")
+const addFoulHomeBtn = document.getElementById("add-foul-home")
+const subtractFoulHomeBtn = document.getElementById("subtract-foul-home")
+const clearFoulsHomeBtn = document.getElementById("clear-fouls-home")
+const add1awayBtn = document.getElementById("add-1-away")
+const add2awayBtn = document.getElementById("add-2-away")
+const add3awayBtn = document.getElementById("add-3-away")
+const addNAwayBtn = document.getElementById("add-n-away")
+const possAwayBtn = document.getElementById("poss-button-away")
+const bonusAwayBtn = document.getElementById("bonus-button-away")
+const addFoulAwayBtn = document.getElementById("add-foul-away")
+const subtractFoulAwayBtn = document.getElementById("subtract-foul-away")
+const clearFoulsAwayBtn = document.getElementById("clear-fouls-away")
 
 function pressNewGame() {
 
@@ -62,6 +88,91 @@ function pressNewGame() {
 newGameBtn.addEventListener('click', pressNewGame)
 newGameForm.addEventListener('submit', startGame)
 
+
+function addPeriodFn() {
+    if(gameState.currentPeriod < gameState.totalPeriods) {
+        gameState.currentPeriod += 1
+        periodCount.innerText = gameState.currentPeriod
+        periodSep.innerText = constants.periodSepChar
+        totalPeriods.innerText = gameState.totalPeriods
+    }
+}
+
+function subtractPeriodFn() {
+    if(gameState.currentPeriod > 1) {
+        gameState.currentPeriod -= 1
+        periodCount.innerText = gameState.currentPeriod
+        periodSep.innerText = constants.periodSepChar
+        totalPeriods.innerText = gameState.totalPeriods
+    }
+}
+
+function renderScore(team) {
+    if(team === 'home') {
+        homeScoreCount.innerText = gameState.home.score
+    } else {
+        awayScoreCount.innerText = gameState.away.score
+    }
+    if(gameState.home.score > gameState.away.score) {
+        homePossBonus.children[2].innerText = constants.leadIcon
+        awayPossBonus.children[2].innerText = ''
+    } else if(gameState.home.score < gameState.away.score) {
+        homePossBonus.children[2].innerText = ''
+        awayPossBonus.children[2].innerText = constants.leadIcon
+    } else {
+        homePossBonus.children[2].innerText = ''
+        awayPossBonus.children[2].innerText = ''
+    }
+}
+
+function addScore(points, team) {
+    gameState[team].score += points
+    renderScore(team)
+}
+
+function togglePoss() {
+    if(gameState.home.poss) {
+        gameState.home.poss = false
+        gameState.away.poss = true
+        homePossBonus.children[0].innerText = ''
+        awayPossBonus.children[0].innerText = constants.possIcon
+    }else{
+        gameState.home.poss = true
+        gameState.away.poss = false
+        homePossBonus.children[0].innerText = constants.possIcon
+        awayPossBonus.children[0].innerText = ''
+    }
+}
+
+function setBonus(team) {
+    gameState[team].bonus = true
+    if(team === 'home') {
+        homePossBonus.children[1].innerText = constants.bonusIcon
+    }else {
+        awayPossBonus.children[1].innerText = constants.bonusIcon
+    }
+}
+
+function renderFouls(team) {
+    if(team === 'home') {
+        homeFoulsCount.innerText = gameState.home.fouls
+    } else {
+        awayFoulsCount.innerText = gameState.away.fouls
+    }
+}
+
+function addFoul(team) {
+    gameState[team].fouls += 1
+    if(gameState[team].fouls > constants.maxFouls) {
+        setBonus(team === 'home' ? 'away' : 'home')
+    }
+    renderFouls(team)
+}
+
+function subtractFoul(team) {
+    gameState[team].fouls -= 1
+    renderFouls(team)
+}
 
 function startGame(e) {
     e.preventDefault()
@@ -87,8 +198,29 @@ function startGame(e) {
     totalPeriods.innerText = gameState.totalPeriods
     gameState.timePerPeriodTs = gameState.totalTimeTs
 
-    // Game Loop
+    // Activate Scoreboard Buttons
+    addPeriod.addEventListener('click', addPeriodFn)
+    subtractPeriod.addEventListener('click', subtractPeriodFn)
+    add1homeBtn.addEventListener('click', () => addScore(1, 'home'))
+    add2homeBtn.addEventListener('click', () => addScore(2, 'home'))
+    add3homeBtn.addEventListener('click', () => addScore(3, 'home'))
+    addNHomeBtn.addEventListener('click', () => addScore(parseInt(addNHomeBtn.value), 'home'))
+    add1awayBtn.addEventListener('click', () => addScore(1, 'away'))
+    add2awayBtn.addEventListener('click', () => addScore(2, 'away'))
+    add3awayBtn.addEventListener('click', () => addScore(3, 'away'))
+    addNAwayBtn.addEventListener('click', () => addScore(parseInt(addNAwayBtn.value), 'away'))
+    possHomeBtn.addEventListener('click', () => togglePoss())
+    possAwayBtn.addEventListener('click', () => togglePoss())
+    bonusHomeBtn.addEventListener('click', () => setBonus('home'))
+    bonusAwayBtn.addEventListener('click', () => setBonus('away'))
+    addFoulHomeBtn.addEventListener('click', () => addFoul('home'))
+    addFoulAwayBtn.addEventListener('click', () => addFoul('away'))
+    subtractFoulHomeBtn.addEventListener('click', () => subtractFoul('home'))
+    subtractFoulAwayBtn.addEventListener('click', () => subtractFoul('away'))
+    clearFoulsHomeBtn.addEventListener('click', () => clearFouls('home'))
+    clearFoulsAwayBtn.addEventListener('click', () => clearFouls('away'))
 
+    // Game Loop
     runTimer()
 
 
@@ -108,8 +240,10 @@ function clearPossBonus() {
     gameState.away.bonus = false
     homePossBonus.children[0].innerText = ''
     homePossBonus.children[1].innerText = ''
+    homePossBonus.children[2].innerText = ''
     awayPossBonus.children[0].innerText = ''
     awayPossBonus.children[1].innerText = ''
+    awayPossBonus.children[2].innerText = ''
 }
 
 function clearFouls() {
@@ -236,6 +370,10 @@ function advancePeriod() {
 function runTimer() {
     const interval = setInterval(() => {
         // TODO: Add Pause and Reset Timer Functionality
+        pauseTimer.addEventListener('click', () => {
+            gameState.running = !gameState.running
+            clearInterval(interval)
+        })
         if (gameState.totalTimeTs > 0) {
             gameState.totalTimeTs -= 1
             if (gameState.totalTimeTs % 10 === 9) {
